@@ -1,5 +1,4 @@
 #nug
 
-unobtrusively adds buildscripts to your javascript
-
-works with npm to simpify your coding process.
+A small utility that unobtrusively adds buildscripts to javascript applications.
+Works with in tandem with npm to simpify your development process.

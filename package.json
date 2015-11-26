@@ -1,11 +1,11 @@
 {
   "name": "nug",
   "version": "0.0.0",
-  "description": "",
+  "description": "A small utility that unobtrusively adds buildscripts to javascript applications.",
   "bin": {
     "nug": "bin/nug.js"
   },
-  "repository": "https://github.com/johnhenry/nug",
+  "repository": "git@github.com:johnhenry/nug.git",
   "engines": {
     "node": "^5.0.0",
     "npm":"^3.0.0"
