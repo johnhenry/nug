@@ -1,0 +1,27 @@
+{
+  "name": "nug",
+  "version": "0.0.0",
+  "description": "",
+  "bin": {
+    "nug": "bin/nug.js"
+  },
+  "repository": "https://github.com/johnhenry/nug",
+  "engines": {
+    "node": "^5.0.0",
+    "npm":"^3.0.0"
+  },
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fs-extra": "^0.26.2",
+    "yargs": "^3.30.0"
+  },
+  "devDependencies": {
+    "eslint": "^1.10.1"
+  }
+}
