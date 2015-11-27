@@ -1,6 +1,6 @@
 {
   "name": "nug",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A small utility that unobtrusively adds buildscripts to javascript applications.",
   "bin": {
     "nug": "bin/nug.js"
@@ -8,15 +8,13 @@
   "repository": "git@github.com:johnhenry/nug.git",
   "engines": {
     "node": "^5.0.0",
-    "npm":"^3.0.0"
+    "npm": "^3.0.0"
   },
   "author": "",
   "license": "ISC",
   "scripts": {
     "test": "node test/test.js"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "fs-extra": "^0.26.2",
     "yargs": "^3.30.0"
