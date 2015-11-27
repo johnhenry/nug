@@ -30,21 +30,35 @@ Usage: npm run build [action] -- [OPTIONS] (after initilization)
     describe: `verbosity`,
     default: 1
   })
-  .option(`logVerbose`, {
+  .option(`verbose`, {
     alias: `v`,
+    type: `boolean`,
+    describe: `log verbosely`
+  })
+  .option(`silent`, {
+    alias: `s`,
+    type: `boolean`,
+    describe: `log silently`
+  })
+  .option(`version`, {
     type: `boolean`,
     describe: `logVerbose`
   })
   .argv;
-
+  const cwd = process.cwd();
+  const version = require(path.resolve(cwd,'package.json')).version;
+  if(argv[`version`]){
+    return console.log(version);
+  }
   const action = argv._[0] || ``;
   //Logging
-  const logLevel = argv[`logVerbose`] ? 2 : argv[`log-level`];
+  const logLevel = argv[`verbose`] ? 2
+    : argv[`silent`] ? -1
+    : argv[`log-level`];
   const log = logLevel > 0 ? console.log.bind(console) : function(){};
   const logError = logLevel > -1 ? console.error.bind(console) : function(){};
   const logVerbose = logLevel > 1 ? console.log.bind(console) : function(){};
-  log(`log level: ${[`quiet`,`normal`,`verbose`][logLevel]}`);
-  const cwd = process.cwd();
+  log(`[log level ${logLevel}: ${[`errors only`,`info`,`verbose`][logLevel]}]`);
   const packageFilePath = path.resolve(cwd, `package.json`);
   //Funcions
   const getconfigFile = () => {
@@ -64,7 +78,7 @@ Usage: npm run build [action] -- [OPTIONS] (after initilization)
       return logError(new Error(`please use npm init to install a valid package.json file and try again: ${error}`));
     }
     log(`installing ${appName} locally...`);
-    exec(`npm install --save ${appName}`);
+    exec(`npm install --save ${appName}@${version}`);
     log(`${appName} installed!`);
     log(`installing npm build script...`);
     pack.scripts = pack.scripts || {};
@@ -72,7 +86,7 @@ Usage: npm run build [action] -- [OPTIONS] (after initilization)
     pack.scripts.purge = `./node_modules/${appName}/bin/${appName}.js purge`;
     log(`npm build scrip installed!`);
     log(`type npm run build`);
-    fs.writeFileSync(packageFilePath, content);
+    fs.writeFileSync(packageFilePath, JSON.stringify(pack));
   };
   const rmdir = require('../lib/rmdir');
   const build = () => {
